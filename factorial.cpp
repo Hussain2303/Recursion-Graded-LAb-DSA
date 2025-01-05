@@ -1,5 +1,6 @@
 #include<iostream>
 #include<stack>
+#include<queue>
 using namespace std;
 int factorial(int n)
 {
@@ -120,6 +121,30 @@ void reverseStack(stack<int>& s)
 	// Insert the popped element at the bottom of the reversed stack
 	insertAtBottom(s, topElement);
 }
+void reverseQueue(queue<int>& q) {
+	if (q.empty()) {
+		return; // Base case: stop when the queue is empty
+	}
+
+	// Step 1: Remove the front element
+	int frontElement = q.front();
+	q.pop();
+
+	// Step 2: Recursively reverse the remaining queue
+	reverseQueue(q);
+
+	// Step 3: Add the removed element to the back of the queue
+	q.push(frontElement);
+}
+
+// Helper function to print a queue
+void printQueue(queue<int> q) {
+	while (!q.empty()) {
+		cout << q.front() << " ";
+		q.pop();
+	}
+	cout << endl;
+}
 
 int main()
 {
@@ -138,7 +163,7 @@ int main()
 	 cout << power(4, 3);
 	 cout << endl;
 	 cout << gcd(48, 18);*/
-	stack<int> s;
+	/*stack<int> s;
 	s.push(4);
 	s.push(3);
 	s.push(2);
@@ -149,8 +174,23 @@ int main()
 		cout << s.top() << " ";
 		s.pop();
 	}
-	cout << endl;
+	cout << endl;*/
+	queue<int> q;
 
+	// Push some elements into the queue
+	q.push(1);
+	q.push(2);
+	q.push(3);
+	q.push(4);
+
+	cout << "Original Queue: ";
+	printQueue(q);
+
+	// Reverse the queue
+	reverseQueue(q);
+
+	cout << "Reversed Queue: ";
+	printQueue(q);
 
 	return 0;
 }
